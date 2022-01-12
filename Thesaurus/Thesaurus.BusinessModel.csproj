@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Thesaurus.DataAccess\Thesaurus.DataAccessing.csproj" />
+    <ProjectReference Include="..\Thesaurus.Model\Thesaurus.Models.csproj" />
+  </ItemGroup>
+
+</Project>
