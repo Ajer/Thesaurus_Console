@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Thesaurus.Models
 {
+    // Ej Entityframework_anpassad med nav.-properties ,data-annotations etc
     public class SynonymeList
     {
-        public int Id { get; set; }
+        public int Id { get; set; }   // pk_SynonymeList
 
-        public string Name { get; set; }
-
-        public int Antal { get; set; }
-
+        public string Description { get; set; }
     }
 }
