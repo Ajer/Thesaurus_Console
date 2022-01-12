@@ -17,27 +17,23 @@ namespace Thesaurus.BusinessModel
         public List<SynonymeList> SynLists { get; set; }
 
 
-        private DataAccess dataAccess;
+        public DataAccess DataAccess{ get; set; }
 
 
         public BusinessLogic()
         {
 
-            dataAccess = new DataAccess();
+            DataAccess = new DataAccess();
 
-            Words = dataAccess.Words;
-            SynLists = dataAccess.SynLists;
+            Words = DataAccess.Words;
+            SynLists = DataAccess.SynLists;
+            SynonymeLists = new Dictionary<int, List<string>>();
 
             CreateSynonymeLists();         
         }
 
         private Dictionary<int,List<string>> CreateSynonymeLists()
         {
-
-            //List<List<string>> theList = new List<List<string>>();   krångligt
-
-            SynonymeLists = new Dictionary<int, List<string>>();
-
             //var i = 1;
             foreach (var word in Words)   
             {
@@ -64,7 +60,9 @@ namespace Thesaurus.BusinessModel
 
         public void AddSynonyms(IEnumerable<string> synonyms)
         {
-            // to be implemented
+            List<string> newSyn = (List<string>)synonyms;
+
+            //bool b = DataAccess.AddOneSynonym(newSyn);
         }
 
         

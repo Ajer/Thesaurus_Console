@@ -7,7 +7,8 @@ namespace Thesaurus_Console
     internal class Program
     {
         private static BusinessLogic bl = new BusinessLogic();
-        private static List<string> AllWords;
+
+        //private static List<string> AllWords;
 
         private static void writeWords(List<string>? wordList,int type)
         {
@@ -19,7 +20,8 @@ namespace Thesaurus_Console
                 }
                 else
                 {
-                    string header = "";
+                    string header="";
+                    
 
                     if (type == 0)  // AllWords
                     {
@@ -27,11 +29,12 @@ namespace Thesaurus_Console
                     }
                     else if (type == 1)   // Synonymes
                     {
-                        header = "-------------Synonymes-------------------";
+                        header = "-------------Synonymes for " + wordList[0] + "-------------------";
                     }
 
                     Console.WriteLine();
                     Console.WriteLine(header);
+
                     foreach (var w in wordList)
                     {
 
@@ -44,7 +47,7 @@ namespace Thesaurus_Console
             }
             else
             {
-                Console.WriteLine("Error in inData or application.Searchresult for List of synonymes possibly>1");
+                Console.WriteLine("Error in inData or application.The searchresult for List of synonymes is possibly>1");
             }
         }
 
@@ -67,11 +70,11 @@ namespace Thesaurus_Console
         static void Main(string[] args)
         {
 
-            AllWords = (List<string>)bl.GetWords();
+            List<string> AllWords = (List<string>)bl.GetWords();
 
             writeWords(AllWords,0);
 
-            List<string> Syns = (List<string>)bl.GetSynonyms("Sympatisk");
+            List<string> Syns = (List<string>)bl.GetSynonyms("Trevlig");
 
             writeWords(Syns, 1);
 
