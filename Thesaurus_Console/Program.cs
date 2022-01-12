@@ -8,7 +8,10 @@ namespace Thesaurus_Console
     {
         private static BusinessLogic bl = new BusinessLogic();
 
-        //private static List<string> AllWords;
+        private static List<string> AllWords;
+
+        private static List<string> Syns;
+
 
         private static void writeWords(List<string>? wordList,int type)
         {
@@ -16,7 +19,21 @@ namespace Thesaurus_Console
             {
                 if (wordList.Count == 0)
                 {
-                    Console.WriteLine("No Words Yet...");
+                    string headerZeroCount = "";
+
+                    if (type == 0)  // AllWords
+                    {
+                        headerZeroCount = "-------------All Words-------------------";
+                    }
+                    else if (type == 1)   // Synonymes
+                    {
+                        headerZeroCount = "------------- Synonymes-------------------";
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine(headerZeroCount);
+                    Console.WriteLine("No Words ...");
+                    Console.WriteLine("-----------------------------------------");
                 }
                 else
                 {
@@ -70,14 +87,23 @@ namespace Thesaurus_Console
         static void Main(string[] args)
         {
 
-            List<string> AllWords = (List<string>)bl.GetWords();
-
+            AllWords = (List<string>)bl.GetWords();
             writeWords(AllWords,0);
 
-            List<string> Syns = (List<string>)bl.GetSynonyms("Trevlig");
-
+            Syns = (List<string>)bl.GetSynonyms("Trevlig");
             writeWords(Syns, 1);
 
+            var newSyns = new List<string> { "Agent", "Spion", "JamesBond-typ" };
+            bl.AddSynonyms(newSyns);
+
+            AllWords = (List<string>)bl.GetWords();
+            writeWords(AllWords, 0);
+
+            Syns = (List<string>)bl.GetSynonyms("spion");
+            writeWords(Syns, 1);
+
+            AllWords = (List<string>)bl.GetWords();
+            writeWords(AllWords, 0);
         }
     }
 }

@@ -23,13 +23,8 @@ namespace Thesaurus.BusinessModel
         public BusinessLogic()
         {
 
-            DataAccess = new DataAccess();
-
-            Words = DataAccess.Words;
-            SynLists = DataAccess.SynLists;
-            SynonymeLists = new Dictionary<int, List<string>>();
-
-            CreateSynonymeLists();         
+            DataAccess = new DataAccess();  
+            UpdateAll();
         }
 
         private Dictionary<int,List<string>> CreateSynonymeLists()
@@ -62,9 +57,27 @@ namespace Thesaurus.BusinessModel
         {
             List<string> newSyn = (List<string>)synonyms;
 
-            //bool b = DataAccess.AddOneSynonym(newSyn);
+            if (!DataAccess.AddOneSynonymeGroup(newSyn))
+            {
+                Console.WriteLine("Error.Could Not Add Synonymes");
+            }
+
+            Words = DataAccess.Words;
+            SynLists = DataAccess.SynLists;
+            SynonymeLists = new Dictionary<int, List<string>>();
+
+            CreateSynonymeLists();
+
         }
 
+        private void UpdateAll()
+        {
+            Words = DataAccess.Words;
+            SynLists = DataAccess.SynLists;
+            SynonymeLists = new Dictionary<int, List<string>>();
+
+            CreateSynonymeLists();
+        }
         
         public IEnumerable<string> GetSynonyms(string word)
         {
