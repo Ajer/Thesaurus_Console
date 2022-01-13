@@ -10,6 +10,7 @@ namespace Thesaurus.DataAccessing
         {
             Words = GetWords();
             SynLists = GetSynList();
+
             MaxWordID = 8;
             MaxSynListID = 2;
         }

@@ -63,6 +63,7 @@ namespace Thesaurus_Console
 
         private static void writeAllSynonymesToConsole(string word)
         {
+            word = word.Trim();
             Syns = (List<string>)bl.GetSynonyms(word);
             writeWords(Syns, 1, word);
         }
@@ -85,9 +86,20 @@ namespace Thesaurus_Console
 
             writeAllSynonymesToConsole("JamesBond-typ");
 
+
+            writeAllSynonymesToConsole(" Skuta ");
+
+            writeAllSynonymesToConsole("Älskvärd");
+
+            writeAllSynonymesToConsole("");
+
+            writeAllSynonymesToConsole("skuta");
+
+            var newSyns2 = new List<string> {"HangarFartyg","Fartyg"};  // Fartyg finns tidigare i Listan
+            bl.AddSynonyms(newSyns2);
+
             writeAllWordsToConsole();
 
-           
         }
     }
 }
